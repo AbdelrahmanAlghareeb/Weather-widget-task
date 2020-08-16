@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'weather-task';
+  colors = ['red','blue','green']
+  selectedColor = 'blue'
+  date = new Date()
 }

@@ -1,37 +1,48 @@
-<div class="wrapper">
-  <img class="weather-icon"  src="../../assets/icons/Icon feather-cloud-rain.svg"/>
+<div class="wrapper d-flex flex-column justify-content-between"  [ngClass]="color">
+  <div >
+    <div class="weather-state">
+      <img *ngIf="weatherInfo?.weatherStatus" class="weather-icon"  [src]="'../../assets/icons/' + weatherInfo.weatherStatus + '.svg'"/>
 
-  <div class="temp-degree">
-    <b class="celsius-icon">23</b>
-    <p>Rain</p>
+      <div class="temp-degree d-flex flex-column">
+        <div class="d-flex">
+          <b>{{weatherInfo?.averageDegree}}</b>
+          <p>oC</p>
+        </div>
+        <div class="justify-content-center d-flex">{{weatherInfo?.weatherStatus}}</div>
+      </div>
+    </div>
+  
+    <div class="time">
+      <p>{{ ( currentHour > 1 ? currentHour - 2 :  24 - currentHour - 2 ) | number:'2.0-0'}}:00 </p>
+      <p>{{ (currentHour > 0 ? currentHour - 1 :  24 - currentHour - 1 ) | number:'2.0-0'}}:00</p>
+      <p>{{ currentHour | number:'2.0-0' }}:00 </p>
+      <p>{{ (currentHour < 24 ? currentHour  + 1 :  currentHour + 1 ) | number:'2.0-0' }}:00 </p>
+      <p>{{ (currentHour < 23 ? currentHour + 2 :  currentHour + 2 ) | number:'2.0-0' }}:00 </p>
+    </div>
   </div>
 
-  <div class="time">
-    <p>10:00</p>
-    <p>11:00</p>
-    <p>12:00</p>
-    <p>13:00</p>
-    <p>14:00</p>
-  </div>
+  <div >
+    <div class="date-wrapper">
 
-  <div class="date-wrapper">
+      <div class="temp-degree-up-low">
+        <span class="celsius-icon">
+          {{weatherInfo?.lowerDegree}}/{{weatherInfo?.upperDegree}}
+        </span>
+      </div>
 
-    <div class="temp-degree-up-low">
-      <span class="celsius-icon">22/21</span>
+      <div id="day" class="align-end d-flex align-end justify-content-evenly">
+        <p>{{days[ currentDay >= 2 ? currentDay - 2 : currentDay + 5 ]}}</p>
+        <p>{{days[ currentDay >= 1 ? currentDay - 1 : 6 - currentDay ]}}</p>
+        <p>{{days[ currentDay ]}}</p>
+        <p>{{days[ currentDay <= 5  ?  currentDay + 1 : 6 - currentDay  ]}}</p>
+        <p>{{days[ currentDay <= 4  ?  currentDay + 2 : (currentDay + 1) - 6   ]}}</p>
+      </div>
+
     </div>
 
-    <div class="day">
-      <p>Tue</p>
-      <p>Wed</p>
-      <p>Thu</p>
-      <p>Fri</p>
-      <p>Sat</p>
+    <div class="location d-flex flex-column text-center">
+      <p>Weather</p>
+      <p>{{weatherInfo?.location}}</p>
     </div>
-
-  </div>
-
-  <div class="location">
-    <p>Weather</p>
-    <p>Zielona Góra, Poland</p>
   </div>
 </div>
