@@ -1,0 +1,12 @@
+.container {
+  width: 100vw;
+  padding: 15px;
+}
+.color-palette span {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-left: 4px;
+  display: inline-block;
+  cursor: pointer;
+}
